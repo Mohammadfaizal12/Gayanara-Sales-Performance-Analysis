@@ -1,4 +1,4 @@
-# Gayanara Sales Performance-Analysis
+# Gayanara Sales Performance Analysis
 ### Interactive Sales Dashboard using Microsoft Excel
 Gayanara Sales Performance Analysis &amp; Interactive Dashboard using Microsoft Excel.
 
@@ -176,7 +176,7 @@ The dashboard includes:
 - Top 10 Cities by Revenue
 - Interactive Slicers
 
-<img width="513" height="395" alt="Gayanara_Sales_Dashboard" src="https://github.com/user-attachments/assets/9b16bfc7-114d-451c-acda-2934fe4b54a7" />
+<img width="618" height="395" alt="Gayanara_Sales_Dashboard" src="https://github.com/user-attachments/assets/9b16bfc7-114d-451c-acda-2934fe4b54a7" />
 
 
 ## Project Deliverables
