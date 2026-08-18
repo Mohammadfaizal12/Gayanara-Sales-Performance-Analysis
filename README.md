@@ -176,7 +176,13 @@ The dashboard includes:
 - Top 10 Cities by Revenue
 - Interactive Slicers
 
-<img width="618" height="395" alt="Gayanara_Sales_Dashboard" src="https://github.com/user-attachments/assets/9b16bfc7-114d-451c-acda-2934fe4b54a7" />
+<p align="center">
+  <img 
+    src="https://github.com/user-attachments/assets/9b16bfc7-114d-451c-acda-2934fe4b54a7" 
+    alt="Gayanara Sales Performance Dashboard"
+    width="100%"
+  />
+</p>
 
 
 ## Project Deliverables
