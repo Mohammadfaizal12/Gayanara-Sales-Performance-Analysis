@@ -351,7 +351,6 @@ The interactive dashboard includes:
 # Project Deliverables
 
 - Interactive Excel Dashboard
-- SQL Analysis
 - Excel PivotTable Analysis
 - PivotChart Visualizations
 - Promotional Performance Analysis
