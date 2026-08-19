@@ -1,26 +1,89 @@
-# Gayanara Sales Performance Analysis
-### Interactive Sales Dashboard using Microsoft Excel
-Gayanara Sales Performance Analysis &amp; Interactive Dashboard using Microsoft Excel.
+# Gayanara Sales Performance & Business Analysis
+### End-to-End Sales Analysis using SQL & Microsoft Excel
+
+Gayanara Sales Performance & Business Analysis is an end-to-end data analytics project using SQL and Microsoft Excel to analyze sales performance, customer transactions, product performance, geographic contribution, order outcomes, and promotional effectiveness.
+
+The project combines data preparation, SQL analysis, Excel PivotTables, PivotCharts, and dashboard development to answer practical business questions and generate actionable insights.
+
+---
 
 ## Project Overview
+
 Gayanara is an online fashion store with transactional data covering customers, orders, products, shipping locations, promotional campaigns, and order statuses.
 
-This project aims to analyze Gayanara's sales performance by examining revenue trends, product performance, brand and geographic contribution, promotional performance, as well as cancellation and return rates.
+This project analyzes Gayanara's sales performance from multiple business perspectives, including:
 
-The analysis was conducted using Microsoft Excel with data preparation, PivotTables, PivotCharts, and an interactive dashboard.
+- Sales performance and revenue trends
+- Product, brand, and category performance
+- Geographic revenue contribution
+- Cancellation and return performance
+- Promotional performance
+- AOV comparison between promotional and non-promotional orders
 
-## Project Objective
-The project aims to answer the following business questions:
+The project uses **SQL for data preparation and analytical queries**, while **Microsoft Excel** is used for exploratory analysis, PivotTables, PivotCharts, and interactive dashboard development.
 
-- How does revenue change over time?
-- Which products and brands contribute the most revenue?
+---
+
+## Project Objectives
+
+The main objectives of this project are to:
+
+- Analyze overall sales performance and revenue trends.
+- Identify high-performing products, brands, categories, and cities.
+- Evaluate cancellation and return performance.
+- Analyze promotional performance based on AOV and discount rate.
+- Compare promotional and non-promotional transactions.
+- Identify business opportunities and provide data-driven recommendations.
+
+---
+
+# Business Questions
+
+## 1. Sales Performance
+
+- What is the total revenue from delivered orders?
+- How many delivered orders are there?
+- What is the Average Order Value (AOV)?
+- How does monthly revenue change over time?
+- Are there seasonal or promotional patterns in sales?
+
+## 2. Order Performance
+
+- What is the cancellation rate?
+- What is the return rate?
+- How are orders distributed across different order statuses?
+
+## 3. Product & Brand Performance
+
+- Which products have the highest sales quantity?
+- Which products generate the highest revenue?
+- Which brands contribute the most revenue?
 - Which product categories generate the highest revenue?
-- Which cities are the main revenue contributors?
-- How do promotional and seasonal events contribute to sales?
-- What are the cancellation and return rates?
-- What opportunities can be identified to improve sales performance?
 
-## Dataset
+## 4. Geographic Performance
+
+- Which cities generate the highest revenue?
+- How is revenue distributed across locations?
+
+## 5. Promotional Performance
+
+### Business Case #6 — Promo: Ngangkat Penjualan atau Bakar Duit?
+
+The marketing team regularly provides promotional codes but has not evaluated whether promotional orders actually generate higher-value transactions.
+
+The analysis focuses on:
+
+- Comparing AOV between **With Promo** and **No Promo** orders.
+- Handling missing promotional and discount values.
+- Measuring the total discount given to customers.
+- Comparing AOV and discount rate across promotional campaigns.
+- Identifying promotions that demonstrate stronger transaction value relative to discount cost.
+- Evaluating whether promotional campaigns should be continued, optimized, or reviewed.
+
+---
+
+# Dataset
+
 The Gayanara dataset consists of several related tables:
 
 - Customers
@@ -29,146 +92,245 @@ The Gayanara dataset consists of several related tables:
 - Products
 - Reviews
 
-The main sales analysis uses data from the orders, order_items, and products tables.
-<a href="http://github.com/Mohammadfaizal12/Gayanara-Sales-Performance-Analysis/blob/main/gayanara.xlsx">Dataset</a>
+The main sales analysis uses data from the:
 
-## Tools Used
+- `orders`
+- `order_items`
+- `products`
 
-- Microsoft Excel
+tables.
+
+---
+
+# Tools Used
+
+### SQL
+
+- PostgreSQL
+- CTE (`WITH`)
+- `CASE WHEN`
+- `CAST`
+- `REPLACE`
+- `TRIM`
+- `COUNT`
+- `SUM`
+- `ROUND`
+- `GROUP BY`
+
+### Microsoft Excel
+
 - PivotTable
 - PivotChart
 - Excel formulas
-- Data Cleaning & Data Preparation
+- Data Cleaning
+- Data Preparation
 - Dashboard Design
 
-## Business Questions / KPIs
+---
 
-### Sales Performance
+# Data Preparation
 
-- What is the total revenue from delivered orders?
-- How many delivered orders are there?
-- What is the Average Order Value (AOV)?
-- How does monthly revenue change over time?
-- Are there any seasonal or promotional patterns?
+The data preparation process included:
 
-### Order Performance
-
-- What is the cancellation rate?
-- What is the return rate?
-- How are orders distributed across different order statuses?
-
-### Product & Brand Performance
-
-- Which products have the highest sales quantity?
-- Which products generate the highest revenue?
-- Which brands contribute the most revenue?
-- Which product categories generate the highest revenue?
-
-### Geographic Performance
-
-- Which cities generate the highest revenue?
-- How is revenue distributed across locations?
-
-### Promotional Performance
-
-- Which promotional events generate the highest revenue?
-- Which promotions have the highest AOV?
-- How do promotional and non-promotional transactions compare?
-
-## Data Preparation & Analysis Process
-
-### 1. Data Preparation
-
-Data from multiple tables was prepared and combined to create a working table for analysis.
-
-The preparation process included:
-
-- Reviewing data structure and quality.
+- Reviewing data structure and data quality.
 - Validating data types.
 - Handling missing and blank values.
-- Preparing relationships between datasets.
+- Converting text-based numeric fields into numeric values.
+- Preparing data relationships.
 - Combining order, product, and order item information.
-- Creating a working table for analysis.
+- Creating analytical datasets for business questions.
 
-### 2. Exploratory Analysis
+### Promotional Data Preparation
 
-PivotTables were used to calculate and analyze:
+For the promotional analysis:
+
+- Blank `discount_amount_idr` values were treated as `0`.
+- Promotional orders were segmented into:
+  - `With Promo`
+  - `No Promo`
+- Only `delivered` orders were included in the AOV and promotional performance analysis.
+
+---
+
+# Analytical Approach
+
+## 1. Sales Performance Analysis
+
+PivotTables and SQL queries were used to calculate:
+
+- Total Revenue
+- Total Orders
+- AOV
+- Monthly Revenue
+- Cancellation Rate
+- Return Rate
+- Revenue by Product
+- Revenue by Brand
+- Revenue by Category
+- Revenue by City
+
+## 2. Promotional Performance Analysis
+
+Promotional orders were analyzed using:
+
+### AOV
+
+Average Order Value was calculated as:
+
+`Total Revenue / Total Orders`
+
+### AOV Difference
+
+The overall AOV difference was calculated by comparing promotional and non-promotional orders:
+
+`AOV Difference = AOV With Promo - AOV No Promo`
+
+### Discount Rate
+
+Discount Rate was calculated as:
+
+`Discount Rate = Total Discount / Total Revenue`
+
+This metric shows the proportion of revenue represented by discounts.
+
+---
+
+# Promotional Analysis — Business Case #6
+
+## AOV Comparison
+
+| Metric | No Promo | With Promo | Difference |
+|---|---:|---:|---:|
+| Total Orders | 1,059 | 717 | -342 |
+| Total Revenue | Rp540,219,000 | Rp337,533,049 | - |
+| Total Discount | Rp0 | Rp22,184,951 | - |
+| AOV | Rp510,122 | Rp470,757 | **-Rp39,364** |
+| AOV Difference | - | - | **-7.72%** |
+
+### Key Finding
+
+Orders using promotional codes generated an average order value of approximately **Rp470,757**, compared with **Rp510,122** for orders without promotions.
+
+This means promotional orders had an AOV approximately **7.7% lower** than non-promotional orders.
+
+Therefore, based on the available transaction data, promotional orders did **not demonstrate a higher average transaction value overall**.
+
+---
+
+## Promotional Campaign Performance
+
+| Promo Code | Orders | Revenue | Discount | AOV | Discount Rate |
+|---|---:|---:|---:|---:|---:|
+| SALE2024 | 91 | Rp49,301,571 | Rp2,801,429 | **Rp541,776** | **5.68%** |
+| HARI BELANJA | 89 | Rp45,026,734 | Rp2,825,266 | Rp505,918 | 6.27% |
+| HARBOLNAS22 | 80 | Rp39,514,624 | Rp2,590,376 | Rp493,933 | 6.56% |
+| RAMADAN23 | 86 | Rp42,063,909 | Rp2,768,091 | Rp489,115 | 6.58% |
+| NEWUSER | 103 | Rp46,449,171 | Rp3,257,829 | Rp450,963 | 7.01% |
+| MEMBER10 | 99 | Rp44,005,447 | Rp2,965,553 | Rp444,499 | 6.74% |
+| FLASHSALE | 83 | Rp35,821,689 | Rp2,518,311 | Rp431,587 | 7.03% |
+| WEEKEND25 | 86 | Rp35,349,904 | Rp2,458,096 | Rp411,045 | 6.95% |
+
+### Key Promotional Insight
+
+**SALE2024** showed the strongest performance among the analyzed promotional campaigns.
+
+It generated:
+
+- AOV of **Rp541,776**
+- Discount Rate of **5.68%**
+- AOV higher than the No Promo baseline of **Rp510,122**
+
+This combination makes SALE2024 a strong candidate for further evaluation.
+
+Meanwhile, promotions such as **FLASHSALE** and **WEEKEND25** had relatively lower AOV while maintaining relatively high discount rates.
+
+---
+
+# Key Findings
+
+### 1. Promotional orders have lower AOV than non-promotional orders
+
+With Promo orders generated an AOV of approximately **Rp470,757**, which is **7.7% lower** than the No Promo AOV of approximately **Rp510,122**.
+
+This indicates that promotional transactions did not generate higher average transaction values overall.
+
+### 2. Gayanara provided Rp22.18 million in discounts
+
+Across **717 promotional orders**, Gayanara provided approximately **Rp22.18 million** in total discounts.
+
+This represents a significant promotional cost that should be evaluated against the value generated by each campaign.
+
+### 3. SALE2024 is the strongest promotional candidate
+
+SALE2024 generated the highest AOV among the promotional campaigns at approximately **Rp541,776**, while also having the lowest discount rate among the analyzed promotional campaigns at **5.68%**.
+
+This combination suggests that SALE2024 may be more efficient than other campaigns based on transaction value and discount cost.
+
+### 4. Some promotions require further evaluation
+
+FLASHSALE and WEEKEND25 showed relatively low AOV compared with No Promo while maintaining discount rates close to 7%.
+
+These campaigns should be reviewed to determine whether the discounts are generating sufficient business value.
+
+---
+
+# Key Recommendations
+
+### 1. Continue promotional campaigns selectively
+
+Promotions should not be evaluated only based on the number of orders generated.
+
+Gayanara should consider both:
+
+- AOV
+- Discount Rate
+
+Promotions with higher AOV and relatively lower discount rates should receive greater attention.
+
+### 2. Evaluate SALE2024 for future campaigns
+
+SALE2024 can be used as a benchmark for future promotional campaigns because it generated a higher AOV than No Promo while requiring a relatively lower discount rate.
+
+Further analysis should investigate what customer, product, or campaign characteristics contributed to its performance.
+
+### 3. Review low-AOV promotional campaigns
+
+Promotions such as FLASHSALE and WEEKEND25 should be evaluated further.
+
+Possible areas for optimization include:
+
+- Discount value
+- Minimum purchase requirements
+- Target customer segments
+- Campaign timing
+- Product eligibility
+
+### 4. Use A/B Testing to measure incremental revenue
+
+The current dataset can compare promotional and non-promotional transactions, but it cannot prove that promotional discounts directly caused additional revenue.
+
+There is no controlled counterfactual showing what customers would have purchased without the promotion.
+
+Therefore, future promotional campaigns should use **A/B testing or a control group** to measure true incremental revenue and determine whether the additional sales justify the discount cost.
+
+---
+
+# Dashboard
+
+The interactive dashboard includes:
+
+### KPI Cards
 
 - Total Revenue
 - Total Orders
 - AOV
 - Cancellation Rate
 - Return Rate
-- Monthly Revenue
-- Top Products
-- Revenue by Brand
-- Revenue by Category
-- Revenue by City
-- Revenue by Promotional Event
 
-### 3. Dashboard Development
+### Visualizations
 
-The analysis results were transformed into KPI Cards and PivotCharts and combined into an interactive sales dashboard.
-
-Slicers were also used to allow users to filter the analysis based on available dimensions such as order date and order status.
-
-## Key Findings
-
-### 1. Revenue shows an overall upward trend
-
-The Monthly Revenue Trend shows fluctuations across months, but the overall revenue performance improves throughout the analysis period.
-
-Monthly revenue reached approximately Rp45 million in early 2025, representing one of the highest monthly revenue levels in the dataset.
-
-### 2. SALE2024 generated the highest AOV
-
-SALE2024 generated an Average Order Value (AOV) of approximately Rp541,776, higher than transactions without promotions, which generated an AOV of approximately Rp510,122.
-
-This indicates that although SALE2024 had fewer transactions, the average transaction value was relatively higher.
-
-### 3. Revenue is concentrated across specific products, brands, and locations
-
-The analysis shows that a significant portion of revenue comes from a number of key products, brands, categories, and cities.
-
-These high-performing segments can be prioritized for inventory planning, promotional campaigns, and sales strategies.
-
-## Key Recommendations
-
-### 1. Optimize promotional campaigns based on AOV
-
-Evaluate promotional campaigns with higher AOV, such as SALE2024, and identify the factors contributing to higher transaction values.
-
-Promotional strategies should focus not only on increasing order volume but also on increasing basket size and transaction value.
-
-### 2. Prioritize high-performing products and brands
-
-Products and brands with strong revenue contributions should receive greater priority in:
-
-- Inventory planning
-- Product visibility
-- Promotional campaigns
-- Sales strategies
-
-This can help maintain high-performing products while identifying opportunities for further growth.
-
-### 3. Reduce cancellation and return rates
-
-The cancellation rate of 11% and return rate of 5.0% indicate that some transactions do not result in delivered sales.
-Gayanara should investigate the main causes of cancellations and returns, particularly in order fulfillment, product availability, and delivery processes, to reduce potential revenue leakage.
-
-## Dashboard
-
-The dashboard includes:
-
-- KPI Cards
-  - Total Revenue
-  - Total Orders
-  - AOV
-  - Cancellation Rate
-  - Return Rate
-  
 - Monthly Revenue Trend
-- AOV (Average Of Value) by Seasonal & Promotional Event
+- AOV by Seasonal & Promotional Event
 - Top 10 Products by Quantity
 - Top 10 Products by Revenue
 - Revenue by Category
@@ -184,37 +346,57 @@ The dashboard includes:
   />
 </p>
 
+---
 
-## Project Deliverables
+# Project Deliverables
 
 - Interactive Excel Dashboard
-- PivotTable Analysis
+- SQL Analysis
+- Excel PivotTable Analysis
 - PivotChart Visualizations
+- Promotional Performance Analysis
 - Executive Summary
-- Business Insights & Recommendations
+- Business Insights
+- Business Recommendations
 
-## Executive Summary
+---
 
-### 3 Key Insights
+# Executive Summary
+
+## 3 Key Insights
+
 1. Revenue shows an overall upward trend despite monthly fluctuations.
-2. SALE2024 generated the highest AOV among the analyzed promotional events.
-3. Revenue is concentrated across several key products, brands, categories, and cities.
+2. Promotional orders have an AOV **7.7% lower** than non-promotional orders.
+3. SALE2024 showed the strongest promotional performance, with an AOV of **Rp541,776** and a discount rate of **5.68%**.
 
-### 3 Recommendations
+## 3 Key Recommendations
 
-1. Optimize promotional campaigns based on AOV and transaction value.
-2. Prioritize high-performing products and brands.
-3. Reduce cancellation and return rates to minimize potential revenue leakage.
+1. Continue promotional campaigns selectively based on AOV and discount efficiency.
+2. Use SALE2024 as a benchmark for evaluating future promotional campaigns.
+3. Implement A/B testing or control groups to measure true incremental revenue from promotions.
 
-## Conclusion
+---
 
-The Gayanara analysis shows that sales performance is influenced not only by order volume but also by transaction value, product performance, brand contribution, geographic distribution, and promotional campaigns.
+# Limitations
 
-The interactive dashboard provides stakeholders with a concise overview of sales performance and can support data-driven decisions regarding sales strategy, product prioritization, and order management.
+The promotional analysis is based on observational transaction data.
 
+Although the analysis compares promotional and non-promotional orders, it cannot determine whether promotions directly caused additional revenue.
 
+A customer who purchased using a promotion may have made the purchase even without the discount.
 
+Therefore, the analysis should be interpreted as a **performance comparison**, not a causal measurement of promotional effectiveness.
 
+---
 
+# Conclusion
 
+The Gayanara analysis demonstrates how transactional data can be transformed into actionable business insights using SQL and Microsoft Excel.
 
+The promotional analysis shows that promotional orders did not generate higher AOV overall compared with non-promotional orders. However, certain campaigns, particularly SALE2024, demonstrated a more attractive combination of transaction value and discount rate.
+
+Rather than eliminating promotions entirely, Gayanara should optimize promotional campaigns selectively and use controlled experiments in future campaigns to measure true incremental revenue.
+
+This project demonstrates an end-to-end analytical workflow:
+
+**Business Question → Data Preparation → SQL Analysis → Excel Analysis → KPI & Visualization → Business Insight → Recommendation**
