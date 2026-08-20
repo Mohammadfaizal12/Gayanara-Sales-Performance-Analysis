@@ -362,19 +362,29 @@ The interactive dashboard includes:
 
 # Executive Summary
 
-## 3 Key Insights
+## Key Insights
 
-1. Revenue shows an overall upward trend despite monthly fluctuations.
-2. Promotional orders have an AOV **7.7% lower** than non-promotional orders.
-3. SALE2024 showed the strongest promotional performance, with an AOV of **Rp541,776** and a discount rate of **5.68%**.
+### Sales & Operational Performance
+1. **Overall Revenue Growth:** Revenue shows an overall upward trend despite monthly fluctuations, reaching peak monthly revenue of ~Rp45 million in early 2025.
+2. **Revenue Concentration:** Sales are heavily concentrated in specific core products, top-performing brands, key categories, and major cities.
+3. **Operational Leakage:** A cancellation rate of **10.9%** and a return rate of **5.0%** indicate potential revenue leakage caused by fulfillment or inventory issues.
 
-## 3 Key Recommendations
-
-1. Continue promotional campaigns selectively based on AOV and discount efficiency.
-2. Use SALE2024 as a benchmark for evaluating future promotional campaigns.
-3. Implement A/B testing or control groups to measure true incremental revenue from promotions.
+### Promotional Effectiveness (Business Case #6)
+4. **Promo AOV Deficit:** Promotional orders generated an AOV **7.7% lower** (Rp470,757) than non-promotional orders (Rp510,122), showing that promos did not inherently increase transaction size.
+5. **Campaign Disparity:** **SALE2024** performed best with the highest AOV (Rp541,776) and lowest discount rate (5.68%), whereas **FLASHSALE** and **WEEKEND25** showed high discount costs (~7%) with subpar AOV.
 
 ---
+
+## Key Recommendations
+
+### Sales Strategy & Operations
+1. **Focus on High-Value Segments:** Prioritize inventory allocation, stock visibility, and marketing push for top-performing product categories, brands, and high-contributing geographic locations.
+2. **Mitigate Revenue Leakage:** Investigate root causes behind the 10.9% cancellation and 5.0% return rates (e.g., stock availability accuracy, delivery speed, or product quality control) to prevent unrealized revenue.
+
+### Promotional Optimization
+3. **Scale Successful Frameworks:** Replicate the **SALE2024** strategy as a benchmark for future campaigns due to its superior AOV and cost efficiency.
+4. **Re-evaluate / Restructure Inefficient Promos:** Review or discontinue low-AOV campaigns (such as FLASHSALE) by adjusting minimum purchase requirements or discount thresholds.
+5. **Implement A/B Testing:** Utilize control groups in future promotional rollouts to measure true incremental revenue and ensure discount costs deliver net-positive business value.---
 
 # Limitations
 
