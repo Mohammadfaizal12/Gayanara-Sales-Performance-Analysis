@@ -369,7 +369,7 @@ The interactive dashboard includes:
 2. **Revenue Concentration:** Sales are heavily concentrated in specific core products, top-performing brands, key categories, and major cities.
 3. **Operational Leakage:** A cancellation rate of **10.9%** and a return rate of **5.0%** indicate potential revenue leakage caused by fulfillment or inventory issues.
 
-### Promotional Effectiveness (Business Case #6)
+### Promotional Effectiveness
 4. **Promo AOV Deficit:** Promotional orders generated an AOV **7.7% lower** (Rp470,757) than non-promotional orders (Rp510,122), showing that promos did not inherently increase transaction size.
 5. **Campaign Disparity:** **SALE2024** performed best with the highest AOV (Rp541,776) and lowest discount rate (5.68%), whereas **FLASHSALE** and **WEEKEND25** showed high discount costs (~7%) with subpar AOV.
 
