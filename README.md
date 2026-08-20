@@ -205,7 +205,7 @@ This metric shows the proportion of revenue represented by discounts.
 | Total Revenue | Rp540,219,000 | Rp337,533,049 | - |
 | Total Discount | Rp0 | Rp22,184,951 | - |
 | AOV | Rp510,122 | Rp470,757 | **-Rp39,364** |
-| AOV Difference | - | - | **-7.72%** |
+| AOV Difference | - | - | **-7.7%** |
 
 ### Key Finding
 
