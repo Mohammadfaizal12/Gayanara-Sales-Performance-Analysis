@@ -94,7 +94,28 @@ Membuat custom measures menggunakan DAX untuk menghasilkan metrik utama, meliput
 
 ## 4. Analysis & Dashboard
 
-Analisis dilakukan menggunakan **Power BI** dan dibagi menjadi tiga bagian utama:
+Analisis dilakukan menggunakan **Power BI** dan mencakup tiga area analisis utama: Sales Overview, Geographic Performance, dan Product & Brand Performance. Hasil analisis disajikan dalam dua halaman dashboard, yaitu Executive Overview dan Product & Brand Performance.
+
+### Full Dashboard Executive Overview
+
+<p align="center">
+  <img 
+    src="assets/overview - dashboard.png" 
+    alt="Gayanara Fashion Retail Power BI Dashboard"
+    width="100%"
+  />
+</p>
+
+
+### Full Dashboard Product & Brand Performance
+
+<p align="center">
+  <img 
+    src="assets/Gayanara - Product.png" 
+    alt="Gayanara Fashion Retail Power BI Dashboard"
+    width="100%"
+  />
+</p>
 
 ### 4.1 Sales Overview
 
@@ -107,7 +128,7 @@ Menganalisis performa penjualan Gayanara sepanjang tahun 2024, meliputi:
 * Return Rate
 * Tren revenue dan order bulanan
 
-![Sales Overview](images/sales-overview.png)
+![Sales Overview](assets/sales-overview.png)
 
 **Focus:** Mengidentifikasi tren penjualan, perubahan performa dibandingkan tahun sebelumnya, serta periode dengan performa penjualan yang lebih tinggi atau rendah.
 
@@ -122,7 +143,7 @@ Menganalisis distribusi dan performa penjualan berdasarkan wilayah, meliputi:
 * Pertumbuhan revenue berdasarkan wilayah
 * Distribusi penjualan secara geografis
 
-![Geographic Performance](images/geographic-performance.png)
+![Geographic Performance](assets/geographic-performance.png)
 
 **Focus:** Mengidentifikasi wilayah dengan kontribusi revenue terbesar serta wilayah yang menunjukkan perubahan performa yang signifikan.
 
@@ -139,7 +160,7 @@ Menganalisis kontribusi dan performa kategori produk serta brand, meliputi:
 * AOV berdasarkan kategori
 * Cancellation Rate & Return Rate berdasarkan kategori
 
-![Product & Brand Performance](images/product-brand-performance.png)
+![Product & Brand Performance](assets/product-brand-performance.png)
 
 **Focus:** Mengidentifikasi kategori dan brand dengan kontribusi revenue terbesar, pertumbuhan kategori, serta kategori dengan tingkat cancellation dan return yang lebih tinggi.
 
