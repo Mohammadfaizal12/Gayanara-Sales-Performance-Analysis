@@ -1,5 +1,44 @@
 # Gayanara Fashion Retail: 2024 End-to-End Sales Performance Analysis
 
+## Table of Contents
+
+1. [Project Overview](#1-project-overview)
+2. [Business Questions](#2-business-questions)
+
+   * [2.1 Business Performance & Sales Trend](#21-business-performance--sales-trend)
+   * [2.2 Geographic Performance](#22-geographic-performance)
+   * [2.3 Product & Brand Performance](#23-product--brand-performance)
+3. [Dataset & Data Preparation](#3-dataset--data-preparation)
+
+   * [Data Source](#data-source)
+   * [Data Transformation & Cleaning](#data-transformation--cleaning)
+   * [Date Table — Time Intelligence](#date-table--time-intelligence)
+   * [Data Cleaning & Standardisasi](#data-cleaning--standardisasi)
+   * [Penanganan Missing Values](#penanganan-missing-values)
+   * [Koreksi Tipe Data](#koreksi-tipe-data)
+   * [Data Modeling](#data-modeling)
+   * [DAX Calculations](#dax-calculations)
+   
+4. [Analysis & Dashboard](#4-analysis--dashboard)
+   - [Executive Overview](#executive-overview)
+     - [Sales Overview](#sales-overview)
+     - [Geographic Performance](#geographic-performance)
+   - [Product & Brand Performance](#product--brand-performance)   
+6. [Business Recommendations](#6-business-recommendations)
+
+   * [Recommendation 1 — Revenue Planning](#recommendation-1--revenue-planning)
+   * [Recommendation 2 — Geographic Strategy](#recommendation-2--geographic-strategy)
+   * [Recommendation 3 — Return Reduction](#recommendation-3--return-reduction)
+   * [Recommendation 4 — Category & Brand Performance](#recommendation-4--category--brand-performance)
+   * [Recommendation 5 — Kembangkan Kategori Kemeja](#recommendation-5--kembangkan-kategori-kemeja)
+   * [Recommendation 6 — Evaluasi Pertumbuhan Celana](#recommendation-6--evaluasi-pertumbuhan-celana)
+   * [Recommendation 7 — Evaluasi Cancellation & Return](#recommendation-7--evaluasi-cancellation--return)
+7. [Tools & Skills](#7-tools--skills)
+
+   * [Tools](#tools)
+   * [Skills Applied](#skills-applied)
+
+
 ## 1. Project Overview
 
 Gayanara adalah bisnis e-commerce/retail fashion di Indonesia. Proyek ini bertujuan untuk menganalisis kinerja penjualan sepanjang tahun 2024, mencakup tren revenue dan order, performa wilayah, serta kontribusi kategori produk dan brand.
@@ -94,30 +133,24 @@ Membuat custom measures menggunakan DAX untuk menghasilkan metrik utama, meliput
 
 ## 4. Analysis & Dashboard
 
-Analisis dilakukan menggunakan **Power BI** dan mencakup tiga area analisis utama: Sales Overview, Geographic Performance, dan Product & Brand Performance. Hasil analisis disajikan dalam dua halaman dashboard, yaitu Executive Overview dan Product & Brand Performance.
+Analisis dilakukan menggunakan **Power BI** dan mencakup tiga area analisis utama:
+**Sales Overview, Geographic Performance, dan Product & Brand Performance**.
 
-### Full Dashboard Executive Overview
+Hasil analisis disajikan dalam dua halaman dashboard:
+
+### Executive Overview
+
+Halaman **Executive Overview** memberikan gambaran umum mengenai performa penjualan Gayanara sepanjang tahun 2024, mencakup performa sales dan geographic performance.
 
 <p align="center">
   <img 
     src="assets/overview - dashboard.png" 
-    alt="Gayanara Fashion Retail Power BI Dashboard"
+    alt="Gayanara Fashion Retail — Executive Overview Dashboard"
     width="100%"
   />
 </p>
 
-
-### Full Dashboard Product & Brand Performance
-
-<p align="center">
-  <img 
-    src="assets/Gayanara - Product.png" 
-    alt="Gayanara Fashion Retail Power BI Dashboard"
-    width="100%"
-  />
-</p>
-
-### 4.1 Sales Overview
+#### Sales Overview
 
 Menganalisis performa penjualan Gayanara sepanjang tahun 2024, meliputi:
 
@@ -128,13 +161,9 @@ Menganalisis performa penjualan Gayanara sepanjang tahun 2024, meliputi:
 * Return Rate
 * Tren revenue dan order bulanan
 
-![Sales Overview](assets/sales-overview.png)
-
 **Focus:** Mengidentifikasi tren penjualan, perubahan performa dibandingkan tahun sebelumnya, serta periode dengan performa penjualan yang lebih tinggi atau rendah.
 
----
-
-### 4.2 Geographic Performance
+#### Geographic Performance
 
 Menganalisis distribusi dan performa penjualan berdasarkan wilayah, meliputi:
 
@@ -143,13 +172,21 @@ Menganalisis distribusi dan performa penjualan berdasarkan wilayah, meliputi:
 * Pertumbuhan revenue berdasarkan wilayah
 * Distribusi penjualan secara geografis
 
-![Geographic Performance](assets/geographic-performance.png)
-
 **Focus:** Mengidentifikasi wilayah dengan kontribusi revenue terbesar serta wilayah yang menunjukkan perubahan performa yang signifikan.
 
 ---
 
-### 4.3 Product & Brand Performance
+### Product & Brand Performance
+
+Halaman **Product & Brand Performance** berfokus pada kontribusi dan performa kategori produk serta brand.
+
+<p align="center">
+  <img 
+    src="assets/Gayanara - Product.png" 
+    alt="Gayanara Fashion Retail — Product & Brand Performance Dashboard"
+    width="100%"
+  />
+</p>
 
 Menganalisis kontribusi dan performa kategori produk serta brand, meliputi:
 
@@ -159,8 +196,6 @@ Menganalisis kontribusi dan performa kategori produk serta brand, meliputi:
 * YoY Revenue Growth
 * AOV berdasarkan kategori
 * Cancellation Rate & Return Rate berdasarkan kategori
-
-![Product & Brand Performance](assets/product-brand-performance.png)
 
 **Focus:** Mengidentifikasi kategori dan brand dengan kontribusi revenue terbesar, pertumbuhan kategori, serta kategori dengan tingkat cancellation dan return yang lebih tinggi.
 
