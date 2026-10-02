@@ -1,411 +1,282 @@
-# Gayanara Sales Performance & Business Analysis
-### End-to-End Sales Analysis using SQL & Microsoft Excel
+# Gayanara Fashion Retail: 2024 End-to-End Sales Performance Analysis
 
-Gayanara Sales Performance & Business Analysis is an end-to-end data analytics project using SQL and Microsoft Excel to analyze sales performance, customer transactions, product performance, geographic contribution, order outcomes, and promotional effectiveness.
+## 1. Project Overview
 
-The project combines data preparation, SQL analysis, Excel PivotTables, PivotCharts, and dashboard development to answer practical business questions and generate actionable insights.
+Gayanara adalah bisnis e-commerce/retail fashion di Indonesia. Proyek ini bertujuan untuk menganalisis kinerja penjualan sepanjang tahun 2024, mencakup tren revenue dan order, performa wilayah, serta kontribusi kategori produk dan brand.
 
----
-
-## Project Overview
-
-Gayanara is an online fashion store with transactional data covering customers, orders, products, shipping locations, promotional campaigns, and order statuses.
-
-This project analyzes Gayanara's sales performance from multiple business perspectives, including:
-
-- Sales performance and revenue trends
-- Product, brand, and category performance
-- Geographic revenue contribution
-- Cancellation and return performance
-- Promotional performance
-- AOV comparison between promotional and non-promotional orders
-
-The project uses **SQL for data preparation and analytical queries**, while **Microsoft Excel** is used for exploratory analysis, PivotTables, PivotCharts, and interactive dashboard development.
+Analisis dilakukan untuk mengidentifikasi pola penjualan, kategori dan brand dengan kontribusi revenue terbesar, serta area yang memiliki tingkat cancellation dan return yang lebih tinggi. Hasil analisis kemudian disajikan dalam bentuk dashboard interaktif menggunakan Power BI untuk membantu menghasilkan insight dan mendukung pengambilan keputusan berbasis data (*data-driven decision making*).
 
 ---
 
-## Project Objectives
+## 2. Business Questions
 
-The main objectives of this project are to:
+Proyek ini bertujuan untuk menganalisis performa penjualan Gayanara pada tahun 2024 dan menjawab beberapa pertanyaan bisnis utama melalui analisis **Sales Overview, Geographic Performance, dan Product & Brand Performance**.
 
-- Analyze overall sales performance and revenue trends.
-- Identify high-performing products, brands, categories, and cities.
-- Evaluate cancellation and return performance.
-- Analyze promotional performance based on AOV and discount rate.
-- Compare promotional and non-promotional transactions.
-- Identify business opportunities and provide data-driven recommendations.
+### 2.1 Business Performance & Sales Trend
 
----
+* Bagaimana performa revenue dan jumlah order Gayanara pada tahun 2024?
+* Bagaimana tren revenue dan order sepanjang tahun 2024?
+* Seberapa besar cancellation dan return rate yang terjadi pada transaksi?
 
-# Business Questions
+### 2.2 Geographic Performance
 
-## 1. Sales Performance
+* Provinsi dan kota mana yang memiliki kontribusi revenue terbesar pada tahun 2024?
+* Wilayah mana yang menunjukkan pertumbuhan revenue tertinggi dibandingkan tahun sebelumnya?
 
-- What is the total revenue from delivered orders?
-- How many delivered orders are there?
-- What is the Average Order Value (AOV)?
-- How does monthly revenue change over time?
-- Are there seasonal or promotional patterns in sales?
+### 2.3 Product & Brand Performance
 
-## 2. Order Performance
-
-- What is the cancellation rate?
-- What is the return rate?
-- How are orders distributed across different order statuses?
-
-## 3. Product & Brand Performance
-
-- Which products have the highest sales quantity?
-- Which products generate the highest revenue?
-- Which brands contribute the most revenue?
-- Which product categories generate the highest revenue?
-
-## 4. Geographic Performance
-
-- Which cities generate the highest revenue?
-- How is revenue distributed across locations?
-
-## 5. Promotional Performance
-
-### Business Case #6 — Promo: Ngangkat Penjualan atau Bakar Duit?
-
-The marketing team regularly provides promotional codes but has not evaluated whether promotional orders actually generate higher-value transactions.
-
-The analysis focuses on:
-
-- Comparing AOV between **With Promo** and **No Promo** orders.
-- Handling missing promotional and discount values.
-- Measuring the total discount given to customers.
-- Comparing AOV and discount rate across promotional campaigns.
-- Identifying promotions that demonstrate stronger transaction value relative to discount cost.
-- Evaluating whether promotional campaigns should be continued, optimized, or reviewed.
+* Kategori produk mana yang memiliki volume order dan revenue terbesar?
+* Bagaimana distribusi revenue antar kategori produk? Apakah terdapat kategori yang terlalu dominan?
+* Brand mana yang memberikan kontribusi revenue terbesar?
+* Kategori mana yang menunjukkan pertumbuhan revenue tertinggi dibandingkan tahun sebelumnya?
+* Kategori mana yang memiliki AOV tertinggi?
+* Kategori mana yang memiliki Cancellation Rate dan Return Rate tertinggi?
 
 ---
 
-# Dataset
+## 3. Dataset & Data Preparation
 
-The Gayanara dataset consists of several related tables:
+### Data Source
 
-- Customers
-- Orders
-- Order Items
-- Products
-- Reviews
+Dataset transaksi internal Gayanara terdiri dari tabel:
 
-The main sales analysis uses data from the:
+* `Orders`
+* `Order Items`
+* `Products`
+* `Customers`
+* `Date Table`
+* `Reviews`
 
-- `orders`
-- `order_items`
-- `products`
+### Data Transformation & Cleaning
 
-<a href="https://github.com/Mohammadfaizal12/Gayanara-Sales-Performance-Analysis/tree/main/raw%20data">Dataset</a>.
+Data transformation dan cleaning dilakukan menggunakan **Power Query**.
 
----
+#### Date Table — Time Intelligence
 
-# Tools Used
+Membuat tabel kalender khusus (`Date Table`) yang mencakup rentang tanggal, tahun, bulan, kuartal, dan nama hari. Tabel kemudian ditandai sebagai Date Table di Power BI untuk mendukung kalkulasi Time Intelligence, seperti YoY (*Year-over-Year*).
 
-### SQL
+#### Data Cleaning & Standardisasi
 
-- PostgreSQL
-- CTE (`WITH`)
-- `CASE WHEN`
-- `CAST`
-- `REPLACE`
-- `TRIM`
-- `COUNT`
-- `SUM`
-- `ROUND`
-- `GROUP BY`
+* Menstandarkan kategori produk yang memiliki penamaan berbeda, seperti `Jacket` & `Jaket`, `Accessories` & `Aksesoris`, `T-shirt` & `Kaos`, serta `Shirt` & `Kemeja`.
+* Menyesuaikan kapitalisasi dan penamaan kategori agar konsisten untuk kebutuhan analisis.
 
-### Microsoft Excel
+#### Penanganan Missing Values
 
-- PivotTable
-- PivotChart
-- Excel formulas
-- Data Cleaning
-- Data Preparation
-- Dashboard Design
+Mengubah nilai kosong (`null`) pada kolom `discount_amount_idr` di tabel `Orders` menjadi `0`, dengan asumsi bahwa nilai kosong menunjukkan tidak adanya diskon.
 
----
+#### Koreksi Tipe Data
 
-# Data Preparation
+Memastikan setiap kolom memiliki tipe data yang sesuai, seperti:
 
-The data preparation process included:
+* Tanggal menjadi `Date`
+* Harga dan revenue menjadi `whole Number`
+* Kategori dan atribut teks menjadi `Text`
 
-- Reviewing data structure and data quality.
-- Validating data types.
-- Handling missing and blank values.
-- Converting text-based numeric fields into numeric values.
-- Preparing data relationships.
-- Combining order, product, and order item information.
-- Creating analytical datasets for business questions.
+### Data Modeling
 
-### Promotional Data Preparation
+Membangun model data di Power BI menggunakan relasi **1-to-Many (1:)** antar tabel untuk mendukung analisis dan filtering pada dashboard.
 
-For the promotional analysis:
+* Menghubungkan `Orders`, `Order Items`, `Products`, `Customers`, dan `Reviews` sesuai kebutuhan analisis.
+* Menghubungkan `Date Table` dengan `Orders` melalui `order_date` untuk mendukung analisis waktu dan kalkulasi Time Intelligence.
 
-- Blank `discount_amount_idr` values were treated as `0`.
-- Promotional orders were segmented into:
-  - `With Promo`
-  - `No Promo`
-- Only `delivered` orders were included in the AOV and promotional performance analysis.
+### DAX Calculations
+
+Membuat custom measures menggunakan DAX untuk menghasilkan metrik utama, meliputi:
+
+* `Total Revenue`
+* `Total Orders`
+* `YoY Growth %`
+* `Cancellation Rate %`
+* `Return Rate %`
+* `AOV (Average Order Value)`
 
 ---
 
-# Analytical Approach
+## 4. Analysis & Dashboard
 
-## 1. Sales Performance Analysis
+Analisis dilakukan menggunakan **Power BI** dan dibagi menjadi tiga bagian utama:
 
-PivotTables and SQL queries were used to calculate:
+### 4.1 Sales Overview
 
-- Total Revenue
-- Total Orders
-- AOV
-- Monthly Revenue
-- Cancellation Rate
-- Return Rate
-- Revenue by Product
-- Revenue by Brand
-- Revenue by Category
-- Revenue by City
+Menganalisis performa penjualan Gayanara sepanjang tahun 2024, meliputi:
 
-## 2. Promotional Performance Analysis
+* Total Revenue
+* Total Orders
+* YoY Revenue Growth
+* Cancellation Rate
+* Return Rate
+* Tren revenue dan order bulanan
 
-Promotional orders were analyzed using:
+![Sales Overview](images/sales-overview.png)
 
-### AOV
-
-Average Order Value was calculated as:
-
-`Total Revenue / Total Orders`
-
-### AOV Difference
-
-The overall AOV difference was calculated by comparing promotional and non-promotional orders:
-
-`AOV Difference = AOV With Promo - AOV No Promo`
-
-### Discount Rate
-
-Discount Rate was calculated as:
-
-`Discount Rate = Total Discount / Total Revenue`
-
-This metric shows the proportion of revenue represented by discounts.
+**Focus:** Mengidentifikasi tren penjualan, perubahan performa dibandingkan tahun sebelumnya, serta periode dengan performa penjualan yang lebih tinggi atau rendah.
 
 ---
 
-# Promotional Analysis — Business Case #6
+### 4.2 Geographic Performance
 
-## AOV Comparison
+Menganalisis distribusi dan performa penjualan berdasarkan wilayah, meliputi:
 
-| Metric | No Promo | With Promo | Difference |
-|---|---:|---:|---:|
-| Total Orders | 1,059 | 717 | -342 |
-| Total Revenue | Rp540,219,000 | Rp337,533,049 | - |
-| Total Discount | Rp0 | Rp22,184,951 | - |
-| AOV | Rp510,122 | Rp470,757 | **-Rp39,364** |
-| AOV Difference | - | - | **-7.7%** |
+* Revenue berdasarkan provinsi
+* Revenue berdasarkan kota
+* Pertumbuhan revenue berdasarkan wilayah
+* Distribusi penjualan secara geografis
 
-### Key Finding
+![Geographic Performance](images/geographic-performance.png)
 
-Orders using promotional codes generated an average order value of approximately **Rp470,757**, compared with **Rp510,122** for orders without promotions.
-
-This means promotional orders had an AOV approximately **7.7% lower** than non-promotional orders.
-
-Therefore, based on the available transaction data, promotional orders did **not demonstrate a higher average transaction value overall**.
+**Focus:** Mengidentifikasi wilayah dengan kontribusi revenue terbesar serta wilayah yang menunjukkan perubahan performa yang signifikan.
 
 ---
 
-## Promotional Campaign Performance
+### 4.3 Product & Brand Performance
 
-| Promo Code | Orders | Revenue | Discount | AOV | Discount Rate |
-|---|---:|---:|---:|---:|---:|
-| SALE2024 | 91 | Rp49,301,571 | Rp2,801,429 | **Rp541,776** | **5.68%** |
-| HARI BELANJA | 89 | Rp45,026,734 | Rp2,825,266 | Rp505,918 | 6.27% |
-| HARBOLNAS22 | 80 | Rp39,514,624 | Rp2,590,376 | Rp493,933 | 6.56% |
-| RAMADAN23 | 86 | Rp42,063,909 | Rp2,768,091 | Rp489,115 | 6.58% |
-| NEWUSER | 103 | Rp46,449,171 | Rp3,257,829 | Rp450,963 | 7.01% |
-| MEMBER10 | 99 | Rp44,005,447 | Rp2,965,553 | Rp444,499 | 6.74% |
-| FLASHSALE | 83 | Rp35,821,689 | Rp2,518,311 | Rp431,587 | 7.03% |
-| WEEKEND25 | 86 | Rp35,349,904 | Rp2,458,096 | Rp411,045 | 6.95% |
+Menganalisis kontribusi dan performa kategori produk serta brand, meliputi:
 
-### Key Promotional Insight
+* Order volume berdasarkan kategori
+* Revenue berdasarkan kategori
+* Revenue berdasarkan brand
+* YoY Revenue Growth
+* AOV berdasarkan kategori
+* Cancellation Rate & Return Rate berdasarkan kategori
 
-**SALE2024** showed the strongest performance among the analyzed promotional campaigns.
+![Product & Brand Performance](images/product-brand-performance.png)
 
-It generated:
-
-- AOV of **Rp541,776**
-- Discount Rate of **5.68%**
-- AOV higher than the No Promo baseline of **Rp510,122**
-
-This combination makes SALE2024 a strong candidate for further evaluation.
-
-Meanwhile, promotions such as **FLASHSALE** and **WEEKEND25** had relatively lower AOV while maintaining relatively high discount rates.
+**Focus:** Mengidentifikasi kategori dan brand dengan kontribusi revenue terbesar, pertumbuhan kategori, serta kategori dengan tingkat cancellation dan return yang lebih tinggi.
 
 ---
 
-# Key Findings
+## 5. Key Insights
 
-### 1. Promotional orders have lower AOV than non-promotional orders
+### Executive Overview
 
-With Promo orders generated an AOV of approximately **Rp470,757**, which is **7.7% lower** than the No Promo AOV of approximately **Rp510,122**.
+#### 1. Sales Performance
 
-This indicates that promotional transactions did not generate higher average transaction values overall.
+Revenue 2024 berhasil mencapai **Rp360,15M (+18,19% YoY)** dari **727 delivered orders**.
 
-### 2. Gayanara provided Rp22.18 million in discounts
+Secara bulanan, penjualan berfluktuasi di awal tahun dengan dua puncak utama di Februari (**36M**) dan Mei (**36M**). Setelah sempat melandai di bulan Juli (**26M**), kinerja perusahaan mencatatkan rebound positif secara konsisten sepanjang H2 hingga mencapai puncaknya di November (**34M**).
 
-Across **717 promotional orders**, Gayanara provided approximately **Rp22.18 million** in total discounts.
+#### 2. Geographic Performance
 
-This represents a significant promotional cost that should be evaluated against the value generated by each campaign.
+Dari sisi geografis, **Jawa Barat** menjadi kontributor revenue terbesar dengan **Rp69,40M**.
 
-### 3. SALE2024 is the strongest promotional candidate
+Di tingkat kota, **Banjarmasin** mencatatkan tingkat revenue tertinggi dengan total revenue **Rp26,31M** dan pertumbuhan YoY sebesar **106,73%**, menunjukkan peningkatan signifikan dibandingkan tahun sebelumnya.
 
-SALE2024 generated the highest AOV among the promotional campaigns at approximately **Rp541,776**, while also having the lowest discount rate among the analyzed promotional campaigns at **5.68%**.
+Sebaliknya, **Banten (Rp14,23M), DI Yogyakarta (Rp13,69M), DKI Jakarta (Rp12,31M), dan Bali (Rp9,93M)** merupakan empat provinsi dengan kontribusi revenue terendah.
 
-This combination suggests that SALE2024 may be more efficient than other campaigns based on transaction value and discount cost.
+#### 3. Cancellation & Return Performance
 
-### 4. Some promotions require further evaluation
+Performa operasional perusahaan menunjukkan penurunan **Cancellation Rate menjadi 9,60% (turun -2,75% YoY)**.
 
-FLASHSALE and WEEKEND25 showed relatively low AOV compared with No Promo while maintaining discount rates close to 7%.
+Di sisi lain, **Return Rate tercatat sebesar 5,00% (naik +0,47% YoY)**.
 
-These campaigns should be reviewed to determine whether the discounts are generating sufficient business value.
-
----
-
-# Key Recommendations
-
-### 1. Continue promotional campaigns selectively
-
-Promotions should not be evaluated only based on the number of orders generated.
-
-Gayanara should consider both:
-
-- AOV
-- Discount Rate
-
-Promotions with higher AOV and relatively lower discount rates should receive greater attention.
-
-### 2. Evaluate SALE2024 for future campaigns
-
-SALE2024 can be used as a benchmark for future promotional campaigns because it generated a higher AOV than No Promo while requiring a relatively lower discount rate.
-
-Further analysis should investigate what customer, product, or campaign characteristics contributed to its performance.
-
-### 3. Review low-AOV promotional campaigns
-
-Promotions such as FLASHSALE and WEEKEND25 should be evaluated further.
-
-Possible areas for optimization include:
-
-- Discount value
-- Minimum purchase requirements
-- Target customer segments
-- Campaign timing
-- Product eligibility
-
-### 4. Use A/B Testing to measure incremental revenue
-
-The current dataset can compare promotional and non-promotional transactions, but it cannot prove that promotional discounts directly caused additional revenue.
-
-There is no controlled counterfactual showing what customers would have purchased without the promotion.
-
-Therefore, future promotional campaigns should use **A/B testing or a control group** to measure true incremental revenue and determine whether the additional sales justify the discount cost.
+Kedua metrik ini krusial untuk terus dipantau karena mewakili potensi omzet yang tidak terealisasi (*unrealized revenue*) akibat pesanan batal maupun pengembalian barang dari pembeli.
 
 ---
 
-# Dashboard
+### Product Performance
 
-The interactive dashboard includes:
+#### 1. Order Volume by Category
 
-### KPI Cards
+Volume pesanan 2024 relatif merata antar kategori. **Jaket, Aksesori, dan Celana** menjadi tiga kontributor terbesar dengan total **53,4%** dari seluruh pesanan, menunjukkan tidak adanya ketergantungan volume yang dominan pada satu kategori.
 
-- Total Revenue
-- Total Orders
-- AOV
-- Cancellation Rate
-- Return Rate
+#### 2. Revenue by Category
 
-### Visualizations
+Empat kategori dengan revenue tertinggi yaitu **Aksesori, Jaket, Celana, dan Kemeja**, masing-masing menghasilkan sekitar **Rp60M–Rp61M** pada tahun 2024.
 
-- Monthly Revenue Trend
-- AOV by Seasonal & Promotional Event
-- Top 10 Products by Quantity
-- Top 10 Products by Revenue
-- Revenue by Category
-- Revenue by Brand
-- Top 10 Cities by Revenue
-- Interactive Slicers
+Aksesori berada di posisi teratas dengan **Rp61,85M**, sementara Kemeja sebesar **Rp60,53M**.
 
-<p align="center">
-  <img 
-    src="https://github.com/user-attachments/assets/9b16bfc7-114d-451c-acda-2934fe4b54a7" 
-    alt="Gayanara Sales Performance Dashboard"
-    width="100%"
-  />
-</p>
+Dengan selisih yang sangat tipis (**Rp1,32M**), revenue Gayanara terdistribusi relatif merata di antara kategori utama, mengindikasikan kategori produk yang sehat tanpa ketergantungan pada satu kategori dominan.
 
----
+#### 3. Revenue by Brand
 
-# Project Deliverables
+**Riang Apparel** mencatat revenue tertinggi sebesar **Rp50,3M**, disusul **Nusa Brand (Rp46,8M)** dan **Cendana Co (Rp42,1M)**.
 
-- Interactive Excel Dashboard
-- Excel PivotTable Analysis
-- PivotChart Visualizations
-- Promotional Performance Analysis
-- Executive Summary
-- Business Insights
-- Business Recommendations
+Sementara itu, **Ratu Mode (Rp30,4M), BajuKita (Rp27,2M), dan Kanvas Lokal (Rp24,6M)** berada di kelompok dengan revenue terendah.
 
----
+Revenue Riang Apparel sekitar **2,04x** lebih tinggi dibandingkan Kanvas Lokal, menunjukkan adanya perbedaan kontribusi revenue yang cukup besar antar brand.
 
-# Executive Summary
+#### 4. Category Performance Detail
 
-## Key Insights
+| Category | Revenue Growth |       AOV | Cancellation Rate | Return Rate |
+| -------- | -------------: | --------: | ----------------: | ----------: |
+| Kemeja   |        +33,51% | Rp373.642 |             8,81% |       3,73% |
+| Celana   |        +22,55% |         - |                 - |           - |
+| Dress    |         +5,65% |         - |                 - |           - |
+| Kaos     |              - |         - |            11,14% |       6,02% |
+| Jaket    |              - |         - |            10,32% |       5,29% |
 
-### Sales & Operational Performance
-1. **Overall Revenue Growth:** Revenue shows an overall upward trend despite monthly fluctuations, reaching peak monthly revenue of ~Rp45 million in early 2025.
-2. **Revenue Concentration:** Sales are heavily concentrated in specific core products, top-performing brands, key categories, and major cities.
-3. **Operational Leakage:** A cancellation rate of **10.9%** and a return rate of **5.0%** indicate potential revenue leakage caused by fulfillment or inventory issues.
+**Insight:**
 
-### Promotional Effectiveness
-4. **Promo AOV Deficit:** Promotional orders generated an AOV **7.7% lower** (Rp470,757) than non-promotional orders (Rp510,122), showing that promos did not inherently increase transaction size.
-5. **Campaign Disparity:** **SALE2024** performed best with the highest AOV (Rp541,776) and lowest discount rate (5.68%), whereas **FLASHSALE** and **WEEKEND25** showed high discount costs (~7%) with subpar AOV.
+1. Kemeja menunjukkan performa paling kuat dengan pertumbuhan revenue **+33,51% YoY** dan AOV tertinggi **Rp373.642**. Kategori ini juga memiliki Cancellation Rate (**8,81%**) dan Return Rate (**3,73%**) terendah, menunjukkan pertumbuhan yang diikuti oleh transaksi yang relatif stabil.
+
+2. Celana mencatat pertumbuhan revenue **+22,55% YoY**, menjadi kategori dengan pertumbuhan tertinggi kedua. Sebaliknya, Dress hanya tumbuh **+5,65% YoY**, menunjukkan peningkatan revenue yang relatif lebih rendah.
+
+3. Kaos dan Jaket memiliki risiko transaksi yang lebih tinggi. Kaos mencatat Cancellation Rate **11,14%** dan Return Rate **6,02%**, sementara Jaket masing-masing **10,32%** dan **5,29%**. Pada Jaket, kondisi ini perlu diperhatikan karena kategori tersebut juga memiliki volume order tertinggi (**203 orders**).
+
+**Kesimpulan:** Kemeja dan Celana menunjukkan momentum pertumbuhan yang positif, sedangkan Kaos dan Jaket perlu mendapat perhatian dari sisi pembatalan dan retur untuk mengurangi potensi kehilangan revenue dan beban operasional.
 
 ---
 
-## Key Recommendations
+## 6. Business Recommendations
 
-### Sales Strategy & Operations
-1. **Focus on High-Value Segments:** Prioritize inventory allocation, stock visibility, and marketing push for top-performing product categories, brands, and high-contributing geographic locations.
-2. **Mitigate Revenue Leakage:** Investigate root causes behind the 10.9% cancellation and 5.0% return rates (e.g., stock availability accuracy, delivery speed, or product quality control) to prevent unrealized revenue.
+### Recommendation 1 — Revenue Planning
 
-### Promotional Optimization
-3. **Scale Successful Frameworks:** Replicate the **SALE2024** strategy as a benchmark for future campaigns due to its superior AOV and cost efficiency.
-4. **Re-evaluate / Restructure Inefficient Promos:** Review or discontinue low-AOV campaigns (such as FLASHSALE) by adjusting minimum purchase requirements or discount thresholds.
-5. **Implement A/B Testing:** Utilize control groups in future promotional rollouts to measure true incremental revenue and ensure discount costs deliver net-positive business value.---
+Evaluasi faktor pendorong revenue pada bulan dengan performa tinggi dan identifikasi strategi yang dapat direplikasi pada periode dengan performa lebih rendah, khususnya sekitar pertengahan tahun.
 
-# Limitations
+### Recommendation 2 — Geographic Strategy
 
-The promotional analysis is based on observational transaction data.
+Pertahankan Jawa Barat sebagai **core market**, sementara lakukan analisis lebih lanjut terhadap Banjarmasin untuk mengidentifikasi faktor pendorong pertumbuhan **+106,73%** dan mengevaluasi potensi replikasi strateginya ke wilayah lain.
 
-Although the analysis compares promotional and non-promotional orders, it cannot determine whether promotions directly caused additional revenue.
+### Recommendation 3 — Return Reduction
 
-A customer who purchased using a promotion may have made the purchase even without the discount.
+Lakukan **diagnostic analysis** terhadap return berdasarkan produk, kategori, wilayah, dan alasan pengembalian untuk mengidentifikasi sumber utama kenaikan return rate sebelum menentukan tindakan perbaikan.
 
-Therefore, the analysis should be interpreted as a **performance comparison**, not a causal measurement of promotional effectiveness.
+### Recommendation 4 — Category & Brand Performance
+
+Pertahankan diversifikasi kategori sambil memperhatikan performa brand.
+
+Volume order dan revenue relatif tersebar antar kategori, sehingga tidak terlihat ketergantungan volume pada satu kategori. Namun, terdapat perbedaan kontribusi yang lebih besar antar brand, dengan Riang Apparel (**Rp50,3M**) sekitar **2,04x** revenue Kanvas Lokal (**Rp24,6M**).
+
+Perbedaan ini dapat menjadi dasar untuk mengevaluasi faktor yang membuat performa beberapa brand lebih tinggi dibandingkan lainnya.
+
+### Recommendation 5 — Kembangkan Kategori Kemeja
+
+Kemeja menunjukkan kombinasi pertumbuhan revenue tertinggi (**+33,51%**) dan AOV tertinggi (**Rp373.642**), dengan tingkat cancellation dan return yang relatif rendah.
+
+Kategori ini dapat menjadi salah satu fokus untuk mempertahankan pertumbuhan revenue.
+
+### Recommendation 6 — Evaluasi Pertumbuhan Celana
+
+Celana mencatat pertumbuhan revenue **+22,55% YoY**, tertinggi kedua.
+
+Analisis lebih lanjut terhadap produk, brand, atau faktor penjualan yang berkontribusi terhadap pertumbuhan ini dapat membantu mengidentifikasi peluang untuk mempertahankan tren tersebut.
+
+### Recommendation 7 — Evaluasi Cancellation & Return
+
+Prioritaskan evaluasi cancellation dan return pada **Kaos dan Jaket**.
+
+Kaos memiliki Cancellation Rate **11,14%** dan Return Rate **6,02%**, sementara Jaket masing-masing **10,32%** dan **5,29%**.
+
+Khusus Jaket, prioritas evaluasi menjadi lebih relevan karena kategori ini juga memiliki volume order tertinggi (**18,19%**).
+
+Perusahaan dapat menelusuri penyebab pembatalan dan retur untuk mengurangi potensi kehilangan revenue dan beban operasional.
 
 ---
 
-# Conclusion
+## 7. Tools & Skills
 
-The Gayanara analysis demonstrates how transactional data can be transformed into actionable business insights using SQL and Microsoft Excel.
+### Tools
 
-The promotional analysis shows that promotional orders did not generate higher AOV overall compared with non-promotional orders. However, certain campaigns, particularly SALE2024, demonstrated a more attractive combination of transaction value and discount rate.
+* **PostgreSQL** — Data querying, data preparation, dan pembuatan Date Table
+* **Power Query** — Data cleaning, transformation, dan standardisasi data
+* **Power BI** — Data modeling, DAX, Time Intelligence, dan interactive dashboard
 
-Rather than eliminating promotions entirely, Gayanara should optimize promotional campaigns selectively and use controlled experiments in future campaigns to measure true incremental revenue.
+### Skills Applied
 
-This project demonstrates an end-to-end analytical workflow:
-
-**Business Question → Data Preparation → SQL Analysis → Excel Analysis → KPI & Visualization → Business Insight → Recommendation**
+* **SQL Querying & Data Preparation**
+* **Data Cleaning & Data Transformation**
+* **Data Modeling & Relationships**
+* **DAX & Time Intelligence**
+* **Data Visualization & Dashboarding**
+* **Exploratory Data Analysis (EDA)**
+* **Business Insight & Recommendation**
