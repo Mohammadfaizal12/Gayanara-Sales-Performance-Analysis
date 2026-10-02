@@ -21,8 +21,6 @@
    
 4. [Analysis & Dashboard](#4-analysis--dashboard)
    - [Executive Overview](#executive-overview)
-     - [Sales Overview](#sales-overview)
-     - [Geographic Performance](#geographic-performance)
    - [Product & Brand Performance](#product--brand-performance)   
 6. [Business Recommendations](#6-business-recommendations)
 
