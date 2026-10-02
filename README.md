@@ -84,7 +84,7 @@ Dataset transaksi internal Gayanara terdiri dari tabel:
 * `Date Table`
 * `Reviews`
 
-[📁 View Dataset](dataset/)
+[📁 View Dataset](raw data/)
 
 ### Data Transformation & Cleaning
 
