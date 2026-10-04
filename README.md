@@ -21,7 +21,22 @@
    
 4. [Analysis & Dashboard](#4-analysis--dashboard)
    - [Executive Overview](#executive-overview)
-   - [Product & Brand Performance](#product--brand-performance)   
+   - [Product & Brand Performance](#product--brand-performance)
+  
+5. [Key Insights](#5-key-insights)
+
+   * [Executive Overview](#executive-overview-1)
+
+     * [Sales Performance](#1-sales-performance)
+     * [Geographic Performance](#2-geographic-performance)
+     * [Cancellation & Return Performance](#3-cancellation--return-performance)
+   * [Product Performance](#product-performance)
+
+     * [Order Volume by Category](#1-order-volume-by-category)
+     * [Revenue by Category](#2-revenue-by-category)
+     * [Revenue by Brand](#3-revenue-by-brand)
+     * [Category Performance Detail](#4-category-performance-detail)
+
 6. [Business Recommendations](#6-business-recommendations)
 
    * [Recommendation 1 — Revenue Planning](#recommendation-1--revenue-planning)
